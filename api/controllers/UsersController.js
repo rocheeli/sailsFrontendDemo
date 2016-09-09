@@ -56,9 +56,28 @@ module.exports = {
    * `UsersController.update()`
    */
   update: function (req, res) {
-    return res.json({
-      todo: 'update() is not implemented yet!'
-    });
+     var values = req.allParams();
+     var modifiedEndpoint = "http://localhost:1337/users/" + values.id;
+      //this calls the data you need to update 
+       if(req.method != "POST"){
+         return res.view('update');}
+
+       
+
+       var args = {
+           data: req.body,
+           headers: { "Content-Type": "application/json" }
+       };
+        //this actually deletes
+       client.put(modifiedEndpoint, args, function (data, response) {
+           //return res.view('create', {success: { message: "Record update successfully"}});
+           if(response.statusCode != "200"){
+               return res.view('update', {error:{message: response.statusMessage + ": " + data.reason}});
+           }
+
+           return res.view('update', {success:{message: "Record updated successfully"}});
+
+        })
   },
 
 
@@ -66,9 +85,28 @@ module.exports = {
    * `UserseController.delete()`
    */
   delete: function (req, res) {
-    return res.json({
-      todo: 'delete() is not implemented yet!'
-    });
+        var values = req.allParams();
+     var modifiedEndpoint = "http://localhost:1337/users/" + values.id;
+      //this calls the data you need to delete 
+       if(req.method != "POST"){
+         return res.view('delete');}
+
+       
+
+       var args = {
+           data: req.body,
+           headers: { "Content-Type": "application/json" }
+       };
+        //this actually deletes
+       client.delete(modifiedEndpoint, args, function (data, response) {
+           //return res.view('create', {success: { message: "Record delete successfully"}});
+           if(response.statusCode != "200"){
+               return res.view('delete', {error:{message: response.statusMessage + ": " + data.reason}});
+           }
+
+           return res.view('delete', {success:{message: "Record deleted successfully"}});
+
+       })
   }
 };
 

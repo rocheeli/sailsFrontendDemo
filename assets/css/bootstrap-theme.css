@@ -584,4 +584,10 @@ fieldset[disabled] .btn-danger.active {
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05), 0 1px 0 rgba(255, 255, 255, .1);
           box-shadow: inset 0 1px 3px rgba(0, 0, 0, .05), 0 1px 0 rgba(255, 255, 255, .1);
 }
+h2{
+  color: #ffcc99 ;
+    font-size: 3.5em;
+    font-weight: bold;
+    text-shadow: 4px 4px #663300 ;
+}
 /*# sourceMappingURL=bootstrap-theme.css.map */
